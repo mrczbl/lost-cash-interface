@@ -1,24 +1,13 @@
 import React, { useState } from "react";
-import '../styles/sidebar.css';
 
 export const SideBar: React.FunctionComponent = (props) => {
-    const [marginLeft, setMarginLeft] = useState("0");
+    const [toggleClass, setToggleClass] = useState("");
 
-    const hideSideBar = () => setMarginLeft("-14rem");
-    const showSideBar = () => setMarginLeft("0");
-
+    const toggleSideBar = () => setToggleClass((toggleClass === "" ? "toggled" : ""));
     return (
-        <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
-            style={{ marginLeft: marginLeft, transition: "0.3s all ease-in-out", position: 'relative' }}
+        <ul className={"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " + toggleClass } id="accordionSidebar"
+            style={{ transition: "0.3s all ease-in-out" }}
         >
-            <div
-                className="sidebar-lasche"
-                style={{ display: (marginLeft === "0" ? 'none' : '') }}
-                onClick={showSideBar}
-            >
-                <button className="rounded-circle border-0 fa-rotate-180" id="sidebarToggle" onClick={showSideBar}></button>
-            </div>
-
             {/*// <!-- Sidebar - Brand --> */}
             <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div className="sidebar-brand-icon rotate-n-15">
@@ -87,7 +76,7 @@ export const SideBar: React.FunctionComponent = (props) => {
 
             {/*// <!-- Sidebar Toggler (Sidebar) -->*/}
             <div className="text-center d-none d-md-inline">
-                <button className="rounded-circle border-0" id="sidebarToggle" onClick={hideSideBar}></button>
+                <button className="rounded-circle border-0" id="sidebarToggle" onClick={toggleSideBar}></button>
             </div>
 
         </ul>
