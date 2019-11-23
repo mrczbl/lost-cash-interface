@@ -1,7 +1,40 @@
-import React from "react";
+import React, {useState} from "react";
 import '../styles/main.css';
+import {useHistory} from 'react-router-dom';
+import {toast, ToastContainer} from "react-toastify";
+import {loginUser} from "../helper/ApiRequest";
+import {useDispatch} from 'react-redux'
+import {setUserLogin} from "../global/actions";
 
 export const Login = () => {
+    let [email, setEmail] = useState("");
+    let [password, setPassword] = useState("");
+    let [rememberMe, setRememberMe] = useState(false);
+    let [loading, setLoading] = useState(false);
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    async function handleSubmit(event: any) {
+        event.preventDefault();
+        setLoading(true);
+        toast.dismiss();
+
+        try {
+            let login: any = await loginUser({email, password});
+            if (!login.error) {
+                toast.success('Jej, hold on a second');
+                dispatch(setUserLogin(login.user.firstname, login.user.lastname, login.user.email));
+                history.push('/');
+                return;
+            } else {
+                toast.error('This combination was wrong :(');
+            }
+        } catch (error) {
+            toast.error("This combination was wrong :(");
+            setLoading(false);
+        }
+    }
+
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -15,18 +48,22 @@ export const Login = () => {
                                         <div className="text-center">
                                             <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                         </div>
-                                        <form className="user">
+                                        <form className="user" onSubmit={handleSubmit}>
                                             <div className="form-group">
                                                 <input
                                                     type="email"
+                                                    value={email}
+                                                    onChange={(event) => setEmail(event.target.value)}
                                                     className="form-control form-control-user"
                                                     id="exampleInputEmail"
                                                     aria-describedby="emailHelp"
-                                                    placeholder="Enter Email Address..."/>
+                                                    placeholder="Your E-Mail Address"/>
                                             </div>
                                             <div className="form-group">
                                                 <input
                                                     type="password"
+                                                    value={password}
+                                                    onChange={(event) => setPassword(event.target.value)}
                                                     className="form-control form-control-user"
                                                     id="exampleInputPassword"
                                                     placeholder="Password"
@@ -34,16 +71,22 @@ export const Login = () => {
                                             </div>
                                             <div className="form-group">
                                                 <div className="custom-control custom-checkbox small">
-                                                    <input type="checkbox" className="custom-control-input"
-                                                           id="customCheck"/>
-                                                    <label className="custom-control-label" htmlFor="customCheck">Remember
-                                                        Me
+                                                    <input
+                                                        type="checkbox"
+                                                        className="custom-control-input"
+                                                        id="customCheck"
+                                                        checked={rememberMe}
+                                                        onChange={(e) => setRememberMe(e.target.checked)}
+                                                    />
+                                                    <label className="custom-control-label" htmlFor="customCheck">
+                                                        Remember Me
                                                     </label>
                                                 </div>
                                             </div>
-                                            <a href="dashboard" className="btn btn-primary btn-user btn-block">
-                                                Login
-                                            </a>
+                                            <button disabled={loading} type="submit"
+                                                    className="btn btn-primary btn-user btn-block">
+                                                {!loading ? 'Login' : 'Loading'}
+                                            </button>
                                             <hr/>
                                             <div className="btn btn-google btn-user btn-block">
                                                 <i className="fab fa-google fa-fw"/> Login with Google
@@ -66,6 +109,16 @@ export const Login = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-left"
+                autoClose={3000}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

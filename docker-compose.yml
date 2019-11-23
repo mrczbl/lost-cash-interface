@@ -1,0 +1,12 @@
+#
+# Author Marco Zabel
+#
+version: '3.3'
+
+services:
+  gui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8091:80'

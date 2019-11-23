@@ -29,7 +29,7 @@ export function TopBar() {
 
                 {/*// <!-- Nav Item - Search Dropdown (Visible Only XS) -->*/}
                 <li className="nav-item dropdown no-arrow d-sm-none">
-                    <a className="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                    <a className="nav-link dropdown-toggle" href="\\localhost:3000" id="searchDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i className="fas fa-search fa-fw"></i>
                     </a>
@@ -53,7 +53,7 @@ export function TopBar() {
 
                 {/*// <!-- Nav Item - Alerts -->*/}
                 <li className="nav-item dropdown no-arrow mx-1">
-                    <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                    <a className="nav-link dropdown-toggle" href="\\localhost:3000" id="alertsDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i className="fas fa-bell fa-fw"></i>
                         {/*// <!-- Counter - Alerts -->*/}
@@ -66,7 +66,7 @@ export function TopBar() {
                         <h6 className="dropdown-header">
                             Alerts Center
                         </h6>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
+                        <a className="dropdown-item d-flex align-items-center" href="\\localhost:3000">
                             <div className="mr-3">
                                 <div className="icon-circle bg-primary">
                                     <i className="fas fa-file-alt text-white"></i>
@@ -77,7 +77,7 @@ export function TopBar() {
                                 <span className="font-weight-bold">A new monthly report is ready to download!</span>
                             </div>
                         </a>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
+                        <a className="dropdown-item d-flex align-items-center" href="\\localhost:3000">
                             <div className="mr-3">
                                 <div className="icon-circle bg-success">
                                     <i className="fas fa-donate text-white"></i>
@@ -88,7 +88,7 @@ export function TopBar() {
                                 $290.29 has been deposited into your account!
                             </div>
                         </a>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
+                        <a className="dropdown-item d-flex align-items-center" href="\\localhost:3000">
                             <div className="mr-3">
                                 <div className="icon-circle bg-warning">
                                     <i className="fas fa-exclamation-triangle text-white"></i>
@@ -99,14 +99,14 @@ export function TopBar() {
                                 Spending Alert: We've noticed unusually high spending for your account.
                             </div>
                         </a>
-                        <a className="dropdown-item text-center small text-gray-500" href="#">Show All
+                        <a className="dropdown-item text-center small text-gray-500" href="\\localhost:3000">Show All
                             Alerts</a>
                     </div>
                 </li>
 
                 {/*// <!-- Nav Item - Messages -->*/}
                 <li className="nav-item dropdown no-arrow mx-1">
-                    <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                    <a className="nav-link dropdown-toggle" href="\\localhost:3000" id="messagesDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i className="fas fa-envelope fa-fw"></i>
                         {/*// <!-- Counter - Messages -->*/}
@@ -119,10 +119,10 @@ export function TopBar() {
                         <h6 className="dropdown-header">
                             Message Center
                         </h6>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
+                        <a className="dropdown-item d-flex align-items-center" href="\\localhost:3000">
                             <div className="dropdown-list-image mr-3">
                                 <img className="rounded-circle"
-                                     src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt=""/>
+                                     src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="placeholder"/>
                                 <div className="status-indicator bg-success"></div>
                             </div>
                             <div className="font-weight-bold">
@@ -133,10 +133,10 @@ export function TopBar() {
                                 <div className="small text-gray-500">Emily Fowler · 58m</div>
                             </div>
                         </a>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
+                        <a className="dropdown-item d-flex align-items-center" href="\\localhost:3000">
                             <div className="dropdown-list-image mr-3">
                                 <img className="rounded-circle"
-                                     src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt=""/>
+                                     src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="placeholder"/>
                                 <div className="status-indicator"></div>
                             </div>
                             <div>
@@ -146,10 +146,10 @@ export function TopBar() {
                                 <div className="small text-gray-500">Jae Chun · 1d</div>
                             </div>
                         </a>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
+                        <a className="dropdown-item d-flex align-items-center" href="\\localhost:3000">
                             <div className="dropdown-list-image mr-3">
                                 <img className="rounded-circle"
-                                     src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt=""/>
+                                     src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="placeholder"/>
                                 <div className="status-indicator bg-warning"></div>
                             </div>
                             <div>
@@ -160,10 +160,10 @@ export function TopBar() {
                                 <div className="small text-gray-500">Morgan Alvarez · 2d</div>
                             </div>
                         </a>
-                        <a className="dropdown-item d-flex align-items-center" href="#">
+                        <a className="dropdown-item d-flex align-items-center" href="\\localhost:3000">
                             <div className="dropdown-list-image mr-3">
                                 <img className="rounded-circle"
-                                     src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt=""/>
+                                     src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="placeholder"/>
                                 <div className="status-indicator bg-success"></div>
                             </div>
                             <div>
@@ -176,7 +176,7 @@ export function TopBar() {
                                 <div className="small text-gray-500">Chicken the Dog · 2w</div>
                             </div>
                         </a>
-                        <a className="dropdown-item text-center small text-gray-500" href="#">Read More
+                        <a className="dropdown-item text-center small text-gray-500" href="\\localhost:3000">Read More
                             Messages</a>
                     </div>
                 </li>
@@ -185,30 +185,30 @@ export function TopBar() {
 
                 {/*// <!-- Nav Item - User Information -->*/}
                 <li className="nav-item dropdown no-arrow">
-                    <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    <a className="nav-link dropdown-toggle" href="\\localhost:3000" id="userDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span
                                             className="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
                         <img className="img-profile rounded-circle"
-                             src="https://source.unsplash.com/QAB-WJcbgJk/60x60"/>
+                             src="https://source.unsplash.com/QAB-WJcbgJk/60x60" alt={"circle"}/>
                     </a>
                     {/*// <!-- Dropdown - User Information -->*/}
                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                          aria-labelledby="userDropdown">
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="\\localhost:3000">
                             <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile
                         </a>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="\\localhost:3000">
                             <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                             Settings
                         </a>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="\\localhost:3000">
                             <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                             Activity Log
                         </a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#" data-toggle="modal"
+                        <a className="dropdown-item" href="\\localhost:3000" data-toggle="modal"
                            data-target="#logoutModal">
                             <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout

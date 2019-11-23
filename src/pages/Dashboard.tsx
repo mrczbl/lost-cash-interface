@@ -3,10 +3,12 @@ import {SideBar} from "../components/SideBar";
 import {TopBar} from "../components/TopBar";
 import {TextIconWidget} from "../components/TextIconWidget";
 import {TextChildWidget} from "../components/TextChildWidget";
-import {AreaChart} from "../components/AreaChart";
 import {DonutChart} from "../components/DonutChart";
 import {ProgressBar} from "../components/ProgressBar";
 import {TextCard} from "../components/TextCard";
+import {DashboardAreaChart} from "../components/DashboardAreaChart";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Dashboard = () => {
     const ProgressBarWidget = <div className="row no-gutters align-items-center">
@@ -35,7 +37,7 @@ export const Dashboard = () => {
         exmaple Food as a general group and groceries, eating-out and
         snacks as subgroups. If there is anything missing or you would like to
         give us some feedback do so&nbsp;
-        <a target="_blank" rel="nofollow" href="https://mzabel.com/">heeeere</a>.
+        <a target="_blank" rel="nofollow noopener noreferrer" href="https://mzabel.com/">heeeere</a>.
         We'd love to here your opinion.
     </p>;
 
@@ -52,10 +54,10 @@ export const Dashboard = () => {
                                 <h1 className="h3 mb-0 text-gray-800">
                                     Dashboard
                                 </h1>
-                                <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                <div className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                                     <i className="fas fa-download fa-sm text-white-50"></i>
                                     Generate Report
-                                </a>
+                                </div>
                             </div>
 
                             <div className="row">
@@ -89,11 +91,7 @@ export const Dashboard = () => {
                             </div>
 
                             <div className="row">
-                                <AreaChart
-                                    data={{1: 'das', 2: 'der'}}
-                                    title={'Balance last Month'}
-                                    unit={'Euro'}
-                                />
+                                <DashboardAreaChart />
                                 <DonutChart
                                     data={{}}
                                     title={'Expenditures'}
@@ -191,6 +189,7 @@ export const Dashboard = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer autoClose={2000} />
         </div>
     );
 };

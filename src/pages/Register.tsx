@@ -31,7 +31,7 @@ export const Register = () => {
                                                    id="exampleRepeatPassword" placeholder="Repeat Password"/>
                                         </div>
                                     </div>
-                                    <a href="login" className="btn btn-primary btn-user btn-block">
+                                    <a href="\\localhost:3000/login" className="btn btn-primary btn-user btn-block">
                                         Register Account
                                     </a>
                                     <hr/>
@@ -44,10 +44,10 @@ export const Register = () => {
                                 </form>
                                 <hr/>
                                 <div className="text-center">
-                                    <a className="small" href="forgot-password">Forgot Password?</a>
+                                    <a className="small" href="\\localhost:3000/forgot-password">Forgot Password?</a>
                                 </div>
                                 <div className="text-center">
-                                    <a className="small" href="login">Already have an account? Login!</a>
+                                    <a className="small" href="\\localhost:3000/login">Already have an account? Login!</a>
                                 </div>
                             </div>
                         </div>
