@@ -1,18 +1,23 @@
-import React, {useState} from "react";
-import '../styles/main.css';
+import React, {useState, useEffect} from "react";
 import {useHistory} from 'react-router-dom';
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import {loginUser} from "../helper/ApiRequest";
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {setUserLogin} from "../global/actions";
+import {Toast} from "../components/Wrapper/Toast";
+import '../styles/main.css';
 
 export const Login = () => {
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
     let [rememberMe, setRememberMe] = useState(false);
     let [loading, setLoading] = useState(false);
+    const loginStatus = useSelector((state: any) => (state.auth.loggedIn));
+
     const history = useHistory();
     const dispatch = useDispatch();
+
+    useEffect(() => { if(loginStatus) { history.push('/'); } }, [loginStatus]);
 
     async function handleSubmit(event: any) {
         event.preventDefault();
@@ -109,16 +114,7 @@ export const Login = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer
-                position="top-left"
-                autoClose={3000}
-                hideProgressBar
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                draggable
-                pauseOnHover
-            />
+            <Toast />
         </div>
     );
 };

@@ -7,11 +7,16 @@ const INITIAL_STATE = {
         refresh_token: null
     },
     user: {
-        first: "",
-        last: "",
-        email: ""
+        first: "Max",
+        last: "Muster",
+        email: "max@muster.de"
     },
     dashboard: {
+        periods: {
+            balances: 'week',
+            categories: 'week',
+            budgets: 'week'
+        },
         balances: {
             'Monday': {
                 balance: 0,
@@ -34,7 +39,46 @@ const INITIAL_STATE = {
             'Sunday': {
                 balance: 0,
             }
-        }
+        },
+        categories: {
+            'Loading': 1,
+        },
+        budgets: [{
+            "id": 0,
+            "name": "Loading",
+            "total": 0,
+            "day": 100,
+            "week": 100,
+            "month": 100
+        }, {
+            "id": 0,
+            "name": "Loading",
+            "total": 0,
+            "day": 100,
+            "week": 100,
+            "month": 100
+        }, {
+            "id": 0,
+            "name": "Loading",
+            "total": 0,
+            "day": 100,
+            "week": 100,
+            "month": 100
+        },{
+            "id": 0,
+            "name": "Loading",
+            "total": 0,
+            "day": 100,
+            "week": 100,
+            "month": 100
+        },{
+            "id": 0,
+            "name": "Loading",
+            "total": 0,
+            "day": 100,
+            "week": 100,
+            "month": 100
+        }]
     }
 };
 
@@ -58,7 +102,31 @@ export const reducer = (state = INITIAL_STATE, action: ReducerAction) => {
             return Object.assign({}, state, {auth: {...state.auth, refresh_token: action.payload.token}});
 
         case types.DASHBOARD_SET:
-            return Object.assign({}, state, {dashboard: {...state.dashboard, balances: action.payload.dashboard.balances}});
+            let expenses = action.payload.categories.expenses;
+            if (Object.keys(expenses).length === 0) {
+                expenses = {'No Data found': '1'}
+            }
+
+            return Object.assign({}, state, {
+                dashboard: {
+                    ...state.dashboard,
+                    balances: action.payload.balances.balances,
+                    categories: expenses,
+                    budgets: action.payload.budgets.budgets,
+                }
+            });
+
+        case types.DASHBOARD_UPDATE_BUDGETS: {
+            return Object.assign({}, state, {
+                dashboard: {
+                    ...state.dashboard,
+                    periods: {
+                        ...state.dashboard.periods,
+                        budgets: action.payload
+                    }
+                }
+            });
+        }
 
         case types.USER_LOGIN:
             return Object.assign({}, state, {user: action.payload});

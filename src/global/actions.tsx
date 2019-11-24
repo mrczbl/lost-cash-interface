@@ -1,5 +1,4 @@
 import {types} from './types';
-import { toast } from "react-toastify";
 
 export const setToken = (token: string) => {
     return {
@@ -17,10 +16,18 @@ export const setRefreshToken = (token: string) => {
     }
 };
 
+export const requestDashboard = (period: string) => {
+    return {
+        type: types.DASHBOARD_REQUEST,
+        payload: period,
+        meta: {types: types.DASHBOARD_REQUEST}
+    }
+};
+
 export const setDashboard = (dashboard: any) => {
     return {
         type: types.DASHBOARD_SET,
-        payload: {dashboard},
+        payload: dashboard,
         meta: {types: types.DASHBOARD_SET}
     }
 };
@@ -41,10 +48,11 @@ export const setUserLogin = (first: string, last: string, email: string) => {
     }
 };
 
-export const setPopupRemove = (message: string) => {
+export const updateDashboardBudgets = (period: string) => {
     return {
-        type: types.POPUP_ERROR_REMOVE,
-        payload: {},
-        meta: {types: types.POPUP_ERROR_REMOVE}
+        type: types.DASHBOARD_UPDATE_BUDGETS,
+        payload: period,
+        meta: {types: types.DASHBOARD_UPDATE_BUDGETS}
     }
 };
+

@@ -16,6 +16,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-toastify": "^5.4.1",
+    "react-tooltip-controller": "^1.0.6",
     "redux": "^4.0.4",
     "redux-saga": "^1.1.3"
   },

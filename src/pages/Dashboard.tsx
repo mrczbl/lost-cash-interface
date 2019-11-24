@@ -1,16 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SideBar} from "../components/SideBar";
 import {TopBar} from "../components/TopBar";
-import {TextIconWidget} from "../components/TextIconWidget";
-import {TextChildWidget} from "../components/TextChildWidget";
-import {DonutChart} from "../components/DonutChart";
-import {ProgressBar} from "../components/ProgressBar";
-import {TextCard} from "../components/TextCard";
-import {DashboardAreaChart} from "../components/DashboardAreaChart";
-import {toast, ToastContainer} from "react-toastify";
+import {TextIconWidget} from "../components/Base/TextIconWidget";
+import {TextChildWidget} from "../components/Base/TextChildWidget";
+import {TextCard} from "../components/Base/TextCard";
+import {DashboardAreaChart} from "../components/Wrapper/DashboardAreaChart";
+import {DashboardDonutChart} from "../components/Wrapper/DashboardDonutChart";
+import {useDispatch} from "react-redux";
+import {requestDashboard} from "../global/actions";
+import {Toast} from "../components/Wrapper/Toast";
+import {DashboardBudgets} from "../components/Wrapper/DashboardBudgets";
 import "react-toastify/dist/ReactToastify.css";
 
-export const Dashboard = () => {
+export const Dashboard: React.FunctionComponent = (props) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(requestDashboard('week'))
+    });
+
     const ProgressBarWidget = <div className="row no-gutters align-items-center">
         <div className="col-auto">
             <div
@@ -91,59 +99,12 @@ export const Dashboard = () => {
                             </div>
 
                             <div className="row">
-                                <DashboardAreaChart />
-                                <DonutChart
-                                    data={{}}
-                                    title={'Expenditures'}
-                                    unit={'Euro'}
-                                />
+                                <DashboardAreaChart/>
+                                <DashboardDonutChart/>
                             </div>
 
                             <div className="row">
-                                <div className="col-lg-6 mb-4">
-                                    <div className="card shadow mb-4">
-                                        <div className="card-header py-3">
-                                            <h6 className="m-0 font-weight-bold text-primary">Budgets</h6>
-                                        </div>
-                                        <div className="card-body">
-                                            <ProgressBar
-                                                title={"Technik"}
-                                                message={"20%"}
-                                                min={0}
-                                                max={100}
-                                                current={80}
-                                            />
-                                            <ProgressBar
-                                                title={"Freizeit"}
-                                                message={"40%"}
-                                                min={0}
-                                                max={100}
-                                                current={60}
-                                            />
-                                            <ProgressBar
-                                                title={"Essen"}
-                                                message={"55%"}
-                                                min={0}
-                                                max={100}
-                                                current={45}
-                                            />
-                                            <ProgressBar
-                                                title={"Sonstiges"}
-                                                message={"80%"}
-                                                min={0}
-                                                max={100}
-                                                current={20}
-                                            />
-                                            <ProgressBar
-                                                title={"Transport"}
-                                                message={"5%"}
-                                                min={0}
-                                                max={100}
-                                                current={95}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
+                                <DashboardBudgets />
 
                                 <div className="col-lg-6 mb-4">
                                     <TextCard
@@ -189,7 +150,7 @@ export const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer autoClose={2000} />
+            <Toast />
         </div>
     );
 };

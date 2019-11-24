@@ -1,4 +1,3 @@
-import React from "react";
 import {BASE_URL} from "../global/urls";
 import axios from 'axios';
 import {store} from "../global/store";

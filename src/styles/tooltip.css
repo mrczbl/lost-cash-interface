@@ -1,0 +1,29 @@
+.tool-tip-menu {
+    line-height: 1.5;
+    font-size: .85rem;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    color: #858796;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e3e6f0;
+    border-radius: .35rem;
+}
+
+.tool-tip-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tool-tip-menu ul li {
+    cursor: pointer;
+}
+
+.tool-tip-menu ul li.bg-primary {
+    color: white;
+}
+
