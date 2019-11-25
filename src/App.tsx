@@ -11,6 +11,8 @@ import {PersistGate} from 'redux-persist/lib/integration/react';
 import {persistor} from './global/store';
 import {apiRequest, fetchData} from "./helper/ApiRequest";
 import {setUserLogin} from "./global/actions";
+import {Expenses} from "./pages/Expenses";
+import {Budgets} from "./pages/Budgets";
 
 const App: React.FunctionComponent = () => {
     const dispatch = useDispatch();
@@ -43,6 +45,12 @@ const App: React.FunctionComponent = () => {
                     </Route>
                     <PrivateRoute exact authenticated={auth.loggedIn} path="/">
                         <Dashboard/>
+                    </PrivateRoute>
+                    <PrivateRoute exact authenticated={auth.loggedIn} path="/budgets">
+                        <Budgets/>
+                    </PrivateRoute>
+                    <PrivateRoute exact authenticated={auth.loggedIn} path="/expenses">
+                        <Expenses/>
                     </PrivateRoute>
                     <Route path="*">
                         <NotFound/>
