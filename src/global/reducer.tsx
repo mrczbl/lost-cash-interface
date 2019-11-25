@@ -8,8 +8,7 @@ const INITIAL_STATE = {
         refresh_token: null
     },
     user: {
-        first: "Max",
-        last: "Muster",
+        name: "Max Muster",
         email: "max@muster.de"
     },
     dashboard: {
