@@ -16,6 +16,38 @@ export const setRefreshToken = (token: string) => {
     }
 };
 
+export const requestExpenses = (period: any) => {
+    return {
+        type: types.EXPENSES_REQUEST,
+        payload: period,
+        meta: {types: types.EXPENSES_REQUEST}
+    }
+};
+
+export const setExpenses = (period: any) => {
+    return {
+        type: types.EXPENSES_SET,
+        payload: period,
+        meta: {types: types.EXPENSES_SET}
+    }
+};
+
+export const requestBudgets = (period: any) => {
+    return {
+        type: types.BUDGETS_REQUEST,
+        payload: period,
+        meta: {types: types.BUDGETS_REQUEST}
+    }
+};
+
+export const setBudgets = (period: any) => {
+    return {
+        type: types.BUDGETS_SET,
+        payload: period,
+        meta: {types: types.BUDGETS_SET}
+    }
+};
+
 export const requestDashboard = (period: any) => {
     return {
         type: types.DASHBOARD_REQUEST,

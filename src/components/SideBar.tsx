@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from "react";
+import {useHistory, useLocation} from "react-router-dom";
 
 export const SideBar: React.FunctionComponent = (props) => {
     const [toggleClass, setToggleClass] = useState("");
-
+    const history = useHistory();
+    const location = useLocation();
+    
     const toggleSideBar = () => setToggleClass((toggleClass === "" ? "toggled" : ""));
     return (
-        <ul className={"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " + toggleClass } id="accordionSidebar"
-            style={{ transition: "0.3s all ease-in-out" }}
+        <ul className={"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " + toggleClass}
+            id="accordionSidebar"
+            style={{transition: "0.3s all ease-in-out"}}
         >
             {/*// <!-- Sidebar - Brand --> */}
             <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -19,11 +23,16 @@ export const SideBar: React.FunctionComponent = (props) => {
             {/*// <!-- Divider -->*/}
             <hr className="sidebar-divider my-0"/>
 
+            {/*todo set active route li active class*/}
             {/*// <!-- Nav Item - Dashboard -->*/}
-            <li className="nav-item active">
-                <a className="nav-link" href="index.html">
+            <li className={"nav-item " + (location.pathname === '/' ? 'active' : '')}>
+                <div
+                    className={"nav-link "}
+                    onClick={() => history.push('/')}
+                >
                     <i className="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </div>
             </li>
 
             {/*// <!-- Divider -->*/}
@@ -35,23 +44,25 @@ export const SideBar: React.FunctionComponent = (props) => {
             </div>
 
             {/*// <!-- Nav Item - Pages Collapse Menu -->*/}
-            <li className="nav-item">
-                <a className="nav-link collapsed" href="#" data-toggle="collapse"
-                   data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
+            <li className={"nav-item " + (location.pathname === '/budgets' ? 'active' : '')}>
+                <div
+                    className={"nav-link "}
+                    onClick={() => history.push('/budgets')}
+                >
                     <i className="fas fa-fw fa-cog"></i>
-                    <span>Categories</span>
-                </a>
+                    <span>Budgets</span>
+                </div>
             </li>
 
             {/*// <!-- Nav Item - Utilities Collapse Menu -->*/}
-            <li className="nav-item">
-                <a className="nav-link collapsed" href="#" data-toggle="collapse"
-                   data-target="#collapseUtilities" aria-expanded="true"
-                   aria-controls="collapseUtilities">
+            <li className={"nav-item " + (location.pathname === '/expenses' ? 'active' : '')}>
+                <div
+                    className={"nav-link "}
+                    onClick={() => history.push('/expenses')}
+                >
                     <i className="fas fa-fw fa-wrench"></i>
                     <span>Expenses</span>
-                </a>
+                </div>
             </li>
 
             {/*// <!-- Divider -->*/}
