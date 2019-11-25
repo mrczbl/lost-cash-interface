@@ -16,7 +16,7 @@ export const setRefreshToken = (token: string) => {
     }
 };
 
-export const requestDashboard = (period: string) => {
+export const requestDashboard = (period: any) => {
     return {
         type: types.DASHBOARD_REQUEST,
         payload: period,
@@ -40,11 +40,19 @@ export const setPopupError = (message: string) => {
     }
 };
 
-export const setUserLogin = (first: string, last: string, email: string) => {
+export const setUserLogin = (name: string, email: string) => {
     return {
         type: types.USER_LOGIN,
-        payload: {first, last, email},
+        payload: {name, email},
         meta: {types: types.USER_LOGIN}
+    }
+};
+
+export const setUserLogout = () => {
+    return {
+        type: types.USER_LOGOUT,
+        payload: {},
+        meta: {types: types.USER_LOGOUT}
     }
 };
 

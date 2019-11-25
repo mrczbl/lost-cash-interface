@@ -16,7 +16,7 @@ export const Dashboard: React.FunctionComponent = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(requestDashboard('week'))
+        dispatch(requestDashboard({balancesPeriod: "week", categoriesPeriod: "week", barsPeriod: "week"}))
     });
 
     const ProgressBarWidget = <div className="row no-gutters align-items-center">
@@ -57,6 +57,7 @@ export const Dashboard: React.FunctionComponent = (props) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
                         <TopBar/>
+
                         <div className="container-fluid">
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">

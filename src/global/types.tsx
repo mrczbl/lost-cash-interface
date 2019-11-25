@@ -13,4 +13,5 @@ export const types = {
     POPUP_ERROR_REMOVE: 'POPUP_ERROR_REMOVE',
 
     USER_LOGIN: 'USER_LOGIN',
+    USER_LOGOUT: 'USER_LOGOUT'
 };

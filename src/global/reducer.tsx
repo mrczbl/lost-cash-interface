@@ -1,4 +1,5 @@
 import {types} from "./types";
+import {REHYDRATE} from "redux-persist/lib/constants";
 
 const INITIAL_STATE = {
     auth: {
@@ -64,14 +65,14 @@ const INITIAL_STATE = {
             "day": 100,
             "week": 100,
             "month": 100
-        },{
+        }, {
             "id": 0,
             "name": "Loading",
             "total": 0,
             "day": 100,
             "week": 100,
             "month": 100
-        },{
+        }, {
             "id": 0,
             "name": "Loading",
             "total": 0,
@@ -95,8 +96,14 @@ interface ReducerAction {
 export const reducer = (state = INITIAL_STATE, action: ReducerAction) => {
     console.log(action);
     switch (action.type) {
+        case REHYDRATE:
+            return Object.assign({}, state, {auth: (!!action.payload ? {...state.auth, ...action.payload.auth} : state.auth)});
+
+        case types.DASHBOARD_REQUEST:
+            return Object.assign({}, state, {dashboard: { ...state.dashboard, periods: action.payload }});
+
         case types.TOKEN_SET:
-            return Object.assign({}, state, {auth: {...state.auth, loggedIn: true, token: action.payload.token}});
+            return Object.assign({}, state, {auth: {...state.auth, token: action.payload.token }});
 
         case types.REFRESH_TOKEN_SET:
             return Object.assign({}, state, {auth: {...state.auth, refresh_token: action.payload.token}});
@@ -129,7 +136,10 @@ export const reducer = (state = INITIAL_STATE, action: ReducerAction) => {
         }
 
         case types.USER_LOGIN:
-            return Object.assign({}, state, {user: action.payload});
+            return Object.assign({}, state, {user: action.payload}, {auth: {...state.auth, loggedIn: true}});
+
+        case types.USER_LOGOUT:
+            return INITIAL_STATE;
 
         default:
             return state;

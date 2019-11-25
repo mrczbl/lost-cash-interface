@@ -1,7 +1,7 @@
 import {BASE_URL} from "../global/urls";
 import axios from 'axios';
 import {store} from "../global/store";
-import {setToken} from "../global/actions";
+import {setToken, setRefreshToken} from "../global/actions";
 
 interface loginOptions {
     email: string,
@@ -27,6 +27,7 @@ export function loginUser(options: loginOptions) {
 
             if(!result.error) {
                 store.dispatch(setToken(result.token));
+                store.dispatch(setRefreshToken(result.refresh_token));
                 resolve(result);
             } else {
                 reject(result);
@@ -92,18 +93,16 @@ export function refreshToken() {
         try {
             const state = store.getState();
             const result: any = await axios({
-                url: '/authentication/refresh',
+                url: BASE_URL + '/authentication/refresh',
                 timeout: 5000,
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer ' + state.auth.token,
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
-                data: state.auth.refresh_token
+                data: { email: state.user.email, refresh_token: state.auth.refresh_token }
             });
-
-            const data: any = await result.json();
+            const data: any = await result.data;
             if (!data.error) {
                 store.dispatch(setToken(data.token));
                 resolve(data);

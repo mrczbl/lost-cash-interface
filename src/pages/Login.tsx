@@ -12,7 +12,7 @@ export const Login = () => {
     let [password, setPassword] = useState("");
     let [rememberMe, setRememberMe] = useState(false);
     let [loading, setLoading] = useState(false);
-    const loginStatus = useSelector((state: any) => (state.auth.loggedIn));
+    const loginStatus = useSelector((state: any) => (state.user.loggedIn));
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -27,8 +27,7 @@ export const Login = () => {
         try {
             let login: any = await loginUser({email, password});
             if (!login.error) {
-                toast.success('Jej, hold on a second');
-                dispatch(setUserLogin(login.user.firstname, login.user.lastname, login.user.email));
+                dispatch(setUserLogin(login.user.name, login.user.email));
                 history.push('/');
                 return;
             } else {
