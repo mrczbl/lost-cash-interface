@@ -1,31 +1,45 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Select, ToolTipController} from 'react-tooltip-controller'
 import "../../styles/tooltip.css";
-import {ToolTipMenu} from "./ToolTipMenu";
 
 interface ToolTipProps {
     offsetY?: any,
     offsetX?: any,
     id: string,
     icon?: any,
-    menu: any
+    menu: any,
 }
 
 export const ToolTip: React.FunctionComponent<ToolTipProps> = (props) => {
-    let [toolTipOpen, setToolTipOpen] = useState(false);
-    let [toolTipTriggerClose, setToolTipTriggerClose] = useState(false);
+    let [trigger, setTrigger] = useState(false);
 
-    const closeToolTip = () => {
-        setTimeout(() => setToolTipTriggerClose(toolTipOpen), 150);
-        setToolTipOpen(false);
-    };
-
-    const toolTipState = (data: boolean) => {
-        setToolTipOpen(data);
-        if(!data && toolTipTriggerClose){
-            setToolTipTriggerClose(false);
+    useEffect(() => {
+        return () => {
+            setTrigger(true);
         }
-    };
+    }, []);
+
+    let list = Object.keys(props.menu.items).map((a: any, b: any) => {
+        //todo implement dropDownDevider in menu
+        // const dropDownDivider = <div className="dropdown-divider"></div>;
+
+        return <li
+            key={b}
+            onClick={() => { props.menu.items[a].action() }}
+            className={"dropdown-item " + ((!!props.menu.items[a].active && props.menu.items[a].active) ? 'bg-primary sidebar-brand' : '')}
+        >
+            {props.menu.items[a].label}
+        </li>;
+    });
+
+    const ToolTipMenu = () => <div className={'tool-tip-menu shadow'}>
+        <div className={"dropdown-header"}>
+            {props.menu.title}
+        </div>
+        <ul>
+            {list}
+        </ul>
+    </div>;
 
     return (
         <ToolTipController
@@ -33,14 +47,13 @@ export const ToolTip: React.FunctionComponent<ToolTipProps> = (props) => {
             offsetX={props.offsetX}
             closeOnClick={false}
             offsetY={props.offsetY}
-            triggerClose={toolTipTriggerClose}
-            returnState={(data: boolean) => toolTipState(data)}
+            triggerClose={trigger}
         >
             <Select>
                 <div style={{cursor: 'pointer'}}>{props.icon}</div>
             </Select>
 
-            <ToolTipMenu title={props.menu.title} items={props.menu.items} closeToolTip={closeToolTip}/>
+            <ToolTipMenu />
         </ToolTipController>
     )
 };

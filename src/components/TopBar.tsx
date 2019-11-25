@@ -1,10 +1,11 @@
 import React from "react";
 import {ToolTip} from "./Base/ToolTip";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import {setUserLogout} from "../global/actions";
 
 export function TopBar() {
+    const dispatch = useDispatch();
     const user = useSelector((state: any) => (state.user));
-
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -103,7 +104,7 @@ export function TopBar() {
                         offsetY={0}
                         icon={<div className={'nav-link'}>
                             <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                                {user.first + " " + user.last}
+                                {user.name}
                             </span>
                             <img className="img-profile rounded-circle"
                                  src="https://source.unsplash.com/QAB-WJcbgJk/60x60" alt={"circle"}/></div>}
@@ -128,8 +129,7 @@ export function TopBar() {
                                 },
                                 'logout': {
                                     'label': 'Logout',
-                                    'action': () => {
-                                    }
+                                    'action': () => { dispatch(setUserLogout()); }
                                 }
                             }
                         }}

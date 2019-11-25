@@ -14,10 +14,10 @@ export const DashboardBudgets = () => {
         return <ProgressBar
             key={b}
             title={budget.name}
-            message={Math.round(Math.min(1, budget.total / budget[period]) * 100) + "%"}
+            message={(!!budget.total ? Math.round(Math.min(1, budget.total / budget[period]) * 100) + "%" : "0%")}
             min={0}
             max={100}
-            current={Math.round(Math.min(1, budget.total / budget[period]) * 100)}
+            current={(!!budget.total ? Math.round(Math.min(1, budget.total / budget[period]) * 100) : 0)}
         />
     });
 
