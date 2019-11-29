@@ -15,6 +15,34 @@ interface fetchDataOptions {
     isPost: boolean
 }
 
+interface registerOptions {
+  name: string,
+  email: string,
+  password1: string,
+  password2: string
+}
+
+export function registerUser(options: registerOptions) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let result: any = await fetchData({
+        url: '/authentication/register',
+        data: options,
+        timeout: 5000,
+        isPost: true
+      });
+
+      if(!result.error) {
+        resolve(result);
+      } else {
+        reject(result);
+      }
+    } catch(error) {
+      reject(error);
+    }
+  });
+}
+
 export function loginUser(options: loginOptions) {
     return new Promise(async (resolve, reject) => {
         try {
