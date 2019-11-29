@@ -32,12 +32,13 @@ export const Table: React.FunctionComponent<TableProps> = (props) => {
         </tbody>
     });
 
-    const setPagination = (page: number) => {
-        console.log('SETTING', page);
+    const setPagination = (page: number, allow: boolean = true) => {
+        if(!allow) {
+            return;
+        }
+
         dispatch(requestExpenses({offset: ((page - 1) * props.selection.entries), limit: props.selection.entries}));
     };
-
-    console.log('sel', props.selection);
 
     return (Object.keys(props.items).length > 0)
         ? (<VariableCard
@@ -86,8 +87,8 @@ export const Table: React.FunctionComponent<TableProps> = (props) => {
                         <div className="paging_simple_numbers">
                             <ul className="pagination">
                                 <li
-                                    onClick=    {() => setPagination((parseInt(props.selection.current) - 1))}
-                                    className={"paginate_button page-item previous " + ((props.selection.current < 2) ? 'disabled' : '')}
+                                    onClick=    {() => setPagination((parseInt(props.selection.current) - 1), (props.selection.current > 1))}
+                                    className={"paginate_button page-item previous " + ((props.selection.current > 1) ? '' : 'disabled')}
                                 >
                                     <div
                                         className="page-link"
@@ -113,7 +114,7 @@ export const Table: React.FunctionComponent<TableProps> = (props) => {
 
                                 <li
                                     className={"paginate_button page-item next " + ((props.selection.current < props.selection.pages) ? "" : "disabled")}
-                                    onClick={() => setPagination((parseInt(props.selection.current) + 1))}
+                                    onClick={() => setPagination((parseInt(props.selection.current) + 1), (props.selection.current < props.selection.pages))}
                                 >
                                     <div
                                         className="page-link"
