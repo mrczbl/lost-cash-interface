@@ -23,7 +23,7 @@ export const VariableCard: React.FunctionComponent<VariableCardProps> = props =>
     });
 
     return (
-        <div className={mainClass}>
+        <div className={"col-12 " + mainClass}>
             <div className="card shadow mb-4">
                 <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 className="m-0 font-weight-bold text-primary">{props.title}</h6>

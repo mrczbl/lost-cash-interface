@@ -9,17 +9,18 @@ import {NotFound} from "./pages/NotFound";
 import {useSelector, useDispatch} from 'react-redux';
 import {PersistGate} from 'redux-persist/lib/integration/react';
 import {persistor} from './global/store';
-import {apiRequest, fetchData} from "./helper/ApiRequest";
+import {apiRequest} from "./helper/ApiRequest";
 import {setUserLogin} from "./global/actions";
 import {Expenses} from "./pages/Expenses";
 import {Budgets} from "./pages/Budgets";
 
 const App: React.FunctionComponent = () => {
     const dispatch = useDispatch();
+    const user = useSelector((state: any) => (state.user));
     const auth = useSelector((state: any) => (state.auth));
 
     useEffect(() => {
-        if (!auth.loggedIn && !!auth.token && !!auth.refresh_token) {
+        if (!user.loggedIn && !!auth.token && !!auth.refresh_token) {
             apiRequest({
                 url: '/authentication/confirm',
                 data: {},
@@ -31,7 +32,7 @@ const App: React.FunctionComponent = () => {
                 }
             }).catch((err) => {});
         }
-    }, [auth]);
+    }, [user, auth]);
 
     return (
         <PersistGate persistor={persistor}>
@@ -43,13 +44,13 @@ const App: React.FunctionComponent = () => {
                     <Route exact path="/register">
                         <Register/>
                     </Route>
-                    <PrivateRoute exact authenticated={auth.loggedIn} path="/">
+                    <PrivateRoute exact authenticated={user.loggedIn} path="/">
                         <Dashboard/>
                     </PrivateRoute>
-                    <PrivateRoute exact authenticated={auth.loggedIn} path="/budgets">
+                    <PrivateRoute exact authenticated={user.loggedIn} path="/budgets">
                         <Budgets/>
                     </PrivateRoute>
-                    <PrivateRoute exact authenticated={auth.loggedIn} path="/expenses">
+                    <PrivateRoute exact authenticated={user.loggedIn} path="/expenses">
                         <Expenses/>
                     </PrivateRoute>
                     <Route path="*">

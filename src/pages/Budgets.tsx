@@ -61,27 +61,27 @@ export const Budgets: React.FunctionComponent = (props) => {
                                 <TextIconWidget
                                     amount={40000}
                                     icon={'fa-calendar'}
-                                    title={'Earnings (Monthly)'}
+                                    title={'Total Budget (Monthly)'}
                                     type={'primary'}
                                     unit={'$'}
                                 />
                                 <TextIconWidget
                                     amount={215000}
                                     icon={'fa-dollar-sign'}
-                                    title={'Earnings (Annual)'}
+                                    title={'Total Budget (Annual)'}
                                     type={'success'}
                                     unit={'$'}
                                 />
                                 <TextChildWidget
                                     icon={'fa-clipboard-list'}
-                                    title={'Tasks'}
+                                    title={'Remain'}
                                     type={'info'}
                                     child={ProgressBarWidget}
                                 />
                                 <TextIconWidget
                                     amount={18}
                                     icon={'fa-comments'}
-                                    title={'Pending Requests'}
+                                    title={'Budets'}
                                     type={'warning'}
                                     unit={''}
                                 />

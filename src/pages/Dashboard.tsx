@@ -16,7 +16,7 @@ export const Dashboard: React.FunctionComponent = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(requestDashboard({balancesPeriod: "week", categoriesPeriod: "week", barsPeriod: "week"}))
+        dispatch(requestDashboard({balances: "week", categories: "week", budgets: "week"}))
     });
 
     const ProgressBarWidget = <div className="row no-gutters align-items-center">

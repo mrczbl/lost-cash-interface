@@ -1,0 +1,13 @@
+.table-subheader {
+    padding: 10px;
+}
+
+.table-subheader h6 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.entries-selection {
+    display: flex;
+    align-items: center;
+}
