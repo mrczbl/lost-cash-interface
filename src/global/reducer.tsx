@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     },
     user: {
         loggedIn: false,
+        confirming: true,
         name: "Max Muster",
         email: "max@muster.de"
     },
@@ -202,8 +203,11 @@ export const reducer = (state = INITIAL_STATE, action: ReducerAction) => {
             });
         }
 
+        case types.CONFIRMING_SET:
+            return Object.assign({}, state, {user: {...state.user, confirming: action.payload.confirming}});
+
         case types.USER_LOGIN:
-            return Object.assign({}, state, {user: {loggedIn: true, ...action.payload}});
+            return Object.assign({}, state, {user: {...state.user, loggedIn: true, ...action.payload}});
 
         case types.USER_LOGOUT:
             return INITIAL_STATE;

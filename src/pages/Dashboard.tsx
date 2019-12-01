@@ -8,12 +8,13 @@ import {DashboardAreaChart} from "../components/Wrapper/DashboardAreaChart";
 import {DashboardDonutChart} from "../components/Wrapper/DashboardDonutChart";
 import {useDispatch} from "react-redux";
 import {requestDashboard} from "../global/actions";
-import {Toast} from "../components/Wrapper/Toast";
 import {DashboardBudgets} from "../components/Wrapper/DashboardBudgets";
 import "react-toastify/dist/ReactToastify.css";
+import {useHistory} from "react-router-dom";
 
 export const Dashboard: React.FunctionComponent = (props) => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(requestDashboard({
@@ -67,9 +68,12 @@ export const Dashboard: React.FunctionComponent = (props) => {
                                 <h1 className="h3 mb-0 text-gray-800">
                                     Dashboard
                                 </h1>
-                                <div className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                                    <i className="fas fa-download fa-sm text-white-50"></i>
-                                    Generate Report
+                                <div
+                                    className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                                    onClick={() => history.push('/add')}
+                                >
+                                    <i className="fas fa-plus fa-sm text-white-50"></i>
+                                    &nbsp;&nbsp;Add Expense
                                 </div>
                             </div>
 
@@ -155,7 +159,6 @@ export const Dashboard: React.FunctionComponent = (props) => {
                     </div>
                 </div>
             </div>
-            <Toast/>
         </div>
     );
 };
