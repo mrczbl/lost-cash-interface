@@ -23,6 +23,7 @@ export const Table: React.FunctionComponent<TableProps> = (props) => {
         {props.items[a].map((b: any, c: any) => {
             let day = moment(b['date']);
 
+            //todo add prop to define which keys should be shown
             return <tr role="row" key={c}>
                 <td>{b['name']}</td>
                 <td>{b['amount']}</td>
