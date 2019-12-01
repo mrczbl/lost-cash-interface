@@ -1,7 +1,7 @@
 import {ProgressBar} from "../Base/ProgressBar";
 import {VariableCard} from "../Base/VariableCard";
 import React from "react";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {ToolTip} from "../Base/ToolTip";
 import {updateDashboardBudgets} from "../../global/actions";
 
@@ -10,23 +10,33 @@ export const DashboardBudgets = () => {
     const period = useSelector((state: any) => (state.dashboard.periods.budgets));
     const dispatch = useDispatch();
 
-    const progressBars = budgets.map((budget: any, b: any) => {
-        return <ProgressBar
-            key={b}
-            title={budget.name}
-            message={(!!budget.total ? Math.round(Math.min(1, budget.total / budget[period]) * 100) + "%" : "0%")}
+    let progressBars;
+    if (budgets.length < 1) {
+        progressBars = <ProgressBar
+            title={"No Data found"}
+            message={"0%"}
             min={0}
             max={100}
-            current={(!!budget.total ? Math.round(Math.min(1, budget.total / budget[period]) * 100) : 0)}
+            current={0}
         />
-    });
+    } else {
+        progressBars = budgets.map((budget: any, b: any) => {
+            return <ProgressBar
+                key={b}
+                title={budget.name}
+                message={(!!budget.total ? Math.round(Math.min(1, budget.total / budget[period]) * 100) + "%" : "0%")}
+                min={0}
+                max={100}
+                current={(!!budget.total ? Math.round(Math.min(1, budget.total / budget[period]) * 100) : 0)}
+            />
+        });
+    }
 
     return (
         <VariableCard
             bootstrap={{
                 xs: 12,
                 lg: 6,
-                md: 4
             }}
             body={progressBars}
             title={'Budgets'}
@@ -40,17 +50,23 @@ export const DashboardBudgets = () => {
                         'week': {
                             'active': (period === 'week'),
                             'label': 'Week',
-                            'action': () => { dispatch(updateDashboardBudgets('week'))},
+                            'action': () => {
+                                dispatch(updateDashboardBudgets('week'))
+                            },
                         },
                         'day': {
                             'active': (period === 'day'),
                             'label': 'Day',
-                            'action': () => { dispatch(updateDashboardBudgets('day'))},
+                            'action': () => {
+                                dispatch(updateDashboardBudgets('day'))
+                            },
                         },
                         'month': {
                             'active': (period === 'month'),
                             'label': 'Month',
-                            'action': () => { dispatch(updateDashboardBudgets('month'))},
+                            'action': () => {
+                                dispatch(updateDashboardBudgets('month'))
+                            },
                         }
                     }
                 }}

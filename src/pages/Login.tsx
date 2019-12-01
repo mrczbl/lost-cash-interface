@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useHistory} from 'react-router-dom';
 import {toast} from "react-toastify";
 import {loginUser} from "../helper/ApiRequest";
@@ -17,7 +17,11 @@ export const Login = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    useEffect(() => { if(loginStatus) { history.push('/'); } }, [loginStatus]);
+    useEffect(() => {
+        if (loginStatus) {
+            history.push('/');
+        }
+    }, [loginStatus, history]);
 
     async function handleSubmit(event: any) {
         event.preventDefault();
@@ -113,7 +117,7 @@ export const Login = () => {
                     </div>
                 </div>
             </div>
-            <Toast />
+            <Toast/>
         </div>
     );
 };

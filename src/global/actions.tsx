@@ -16,18 +16,18 @@ export const setRefreshToken = (token: string) => {
     }
 };
 
-export const requestExpenses = (period: any) => {
+export const requestExpenses = (options: any) => {
     return {
         type: types.EXPENSES_REQUEST,
-        payload: period,
+        payload: options,
         meta: {types: types.EXPENSES_REQUEST}
     }
 };
 
-export const setExpenses = (period: any) => {
+export const setExpenses = (expenses: any) => {
     return {
         type: types.EXPENSES_SET,
-        payload: period,
+        payload: expenses,
         meta: {types: types.EXPENSES_SET}
     }
 };

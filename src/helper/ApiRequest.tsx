@@ -75,7 +75,6 @@ export function fetchData(options: fetchDataOptions) {
                 },
                 data: options.data
             });
-
             const data = await result.data;
             if (!data.error) {
                 resolve(data);

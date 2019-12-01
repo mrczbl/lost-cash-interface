@@ -3,17 +3,19 @@ import {SideBar} from "../components/SideBar";
 import {TopBar} from "../components/TopBar";
 import {TextIconWidget} from "../components/Base/TextIconWidget";
 import {TextChildWidget} from "../components/Base/TextChildWidget";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {requestExpenses} from "../global/actions";
 import {Toast} from "../components/Wrapper/Toast";
 import "react-toastify/dist/ReactToastify.css";
+import {Table} from "../components/Base/Table";
 
 export const Expenses: React.FunctionComponent = (props) => {
     const dispatch = useDispatch();
+    const expenses = useSelector((state: any) => (state.expenses));
 
     useEffect(() => {
-        dispatch(requestExpenses({period: "week"}))
-    });
+        dispatch(requestExpenses({prevLimit: 20, limit: 20, offset: 0}))
+    }, [dispatch]);
 
     const ProgressBarWidget = <div className="row no-gutters align-items-center">
         <div className="col-auto">
@@ -61,14 +63,14 @@ export const Expenses: React.FunctionComponent = (props) => {
                                 <TextIconWidget
                                     amount={40000}
                                     icon={'fa-calendar'}
-                                    title={'Earnings (Monthly)'}
+                                    title={'Biggest expense'}
                                     type={'primary'}
                                     unit={'$'}
                                 />
                                 <TextIconWidget
                                     amount={215000}
                                     icon={'fa-dollar-sign'}
-                                    title={'Earnings (Annual)'}
+                                    title={'Bookmarked expenses'}
                                     type={'success'}
                                     unit={'$'}
                                 />
@@ -81,18 +83,24 @@ export const Expenses: React.FunctionComponent = (props) => {
                                 <TextIconWidget
                                     amount={18}
                                     icon={'fa-comments'}
-                                    title={'Pending Requests'}
+                                    title={'Categories'}
                                     type={'warning'}
                                     unit={''}
                                 />
                             </div>
 
                             <div className="row">
-                                {/*todo table for expenses*/}
+                                <Table
+                                    header={"Expenses"}
+                                    selection={expenses.selection}
+                                    items={expenses.items}
+                                />
                             </div>
 
                             <div className="row">
-                                {/*todo pagination*/}
+                                <div className={"col-xs-12"}>
+                                    {/*todo pagination*/}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -106,7 +114,7 @@ export const Expenses: React.FunctionComponent = (props) => {
                     </footer>
                 </div>
             </div>
-            <Toast />
+            <Toast/>
         </div>
     );
 };

@@ -16,8 +16,12 @@ export const Dashboard: React.FunctionComponent = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(requestDashboard({balancesPeriod: "week", categoriesPeriod: "week", barsPeriod: "week"}))
-    });
+        dispatch(requestDashboard({
+            balances: "week",
+            categories: "week",
+            budgets: "week"
+        }))
+    }, [dispatch]);
 
     const ProgressBarWidget = <div className="row no-gutters align-items-center">
         <div className="col-auto">
@@ -105,7 +109,7 @@ export const Dashboard: React.FunctionComponent = (props) => {
                             </div>
 
                             <div className="row">
-                                <DashboardBudgets />
+                                <DashboardBudgets/>
 
                                 <div className="col-lg-6 mb-4">
                                     <TextCard
@@ -151,7 +155,7 @@ export const Dashboard: React.FunctionComponent = (props) => {
                     </div>
                 </div>
             </div>
-            <Toast />
+            <Toast/>
         </div>
     );
 };

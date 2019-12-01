@@ -35,19 +35,22 @@ export const Register = () => {
                                         Register Account
                                     </a>
                                     <hr/>
-                                    <a className="btn btn-google btn-user btn-block">
-                                        <i className="fab fa-google fa-fw"/> Register with Google
-                                    </a>
-                                    <a className="btn btn-facebook btn-user btn-block">
-                                        <i className="fab fa-facebook-f fa-fw"/> Register with Facebook
-                                    </a>
+                                    <div className="btn btn-google btn-user btn-block">
+                                        <i className="fab fa-google fa-fw"/>
+                                        &nbsp;Register with Google
+                                    </div>
+                                    <div className="btn btn-facebook btn-user btn-block">
+                                        <i className="fab fa-facebook-f fa-fw"/>
+                                        &nbsp;Register with Facebook
+                                    </div>
                                 </form>
                                 <hr/>
                                 <div className="text-center">
                                     <a className="small" href="\\localhost:3000/forgot-password">Forgot Password?</a>
                                 </div>
                                 <div className="text-center">
-                                    <a className="small" href="\\localhost:3000/login">Already have an account? Login!</a>
+                                    <a className="small" href="\\localhost:3000/login">Already have an account?
+                                        Login!</a>
                                 </div>
                             </div>
                         </div>
