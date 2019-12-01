@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {Route, Switch, withRouter} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import {Login} from "./pages/Login";
 import {Register} from "./pages/Register";
 import {Dashboard} from "./pages/Dashboard";
@@ -73,4 +73,4 @@ const App: React.FunctionComponent = (props: any) => {
     );
 };
 
-export default withRouter(App);
+export default App;
