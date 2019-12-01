@@ -1,6 +1,6 @@
 import {all, call, fork, put, take} from "redux-saga/effects";
 import {types} from "../types";
-import {setDashboard, setExpenses, setPopupError} from "../actions";
+import {setExpenses, setPopupError} from "../actions";
 import {apiRequest} from "../../helper/ApiRequest";
 import {toast} from "react-toastify";
 
@@ -11,20 +11,19 @@ export function* ExpensesSaga() {
     }
 }
 
-export function* getExpenses({limit = 20, offset = 0}) {
+export function* getExpenses({prevLimit = 20, limit = 20, offset = 0}) {
     try {
         let [expenses] = yield all([
             call(apiRequest, {
                 url: '/expense/limit',
                 data: {
                     limit: limit,
-                    offset: offset
+                    offset: Math.floor((prevLimit * offset) / limit) * limit
                 },
                 timeout: 5000,
                 isPost: true
             }),
         ]);
-        console.log(expenses);
         yield put(setExpenses({expenses}));
     } catch (error) {
         toast.error("Network Error");

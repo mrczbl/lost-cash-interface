@@ -57,7 +57,6 @@ export const requestDashboard = (period: any) => {
 };
 
 export const setDashboard = (dashboard: any) => {
-    console.log(dashboard);
     return {
         type: types.DASHBOARD_SET,
         payload: dashboard,

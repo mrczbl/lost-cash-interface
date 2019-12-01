@@ -39,7 +39,6 @@ export function loginUser(options: loginOptions) {
 }
 
 export function apiRequest(options: fetchDataOptions) {
-    console.log('req options', options);
     return new Promise(async (resolve, reject) => {
         try {
             let result: any = await fetchData(options);
@@ -76,9 +75,6 @@ export function fetchData(options: fetchDataOptions) {
                 },
                 data: options.data
             });
-
-            console.log('RES', result);
-
             const data = await result.data;
             if (!data.error) {
                 resolve(data);

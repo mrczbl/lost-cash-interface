@@ -3,6 +3,7 @@ import moment from 'moment';
 import {VariableCard} from "./VariableCard";
 import {useDispatch} from 'react-redux';
 import {requestExpenses} from "../../global/actions";
+import Select from "react-select";
 
 interface TableProps {
     header: string,
@@ -33,11 +34,23 @@ export const Table: React.FunctionComponent<TableProps> = (props) => {
     });
 
     const setPagination = (page: number, allow: boolean = true) => {
-        if(!allow) {
+        if (!allow) {
             return;
         }
+        dispatch(requestExpenses({prevLimit: props.selection.entries, offset: page - 1, limit: props.selection.entries}));
+    };
 
-        dispatch(requestExpenses({offset: ((page - 1) * props.selection.entries), limit: props.selection.entries}));
+    const customStyles = {
+        control: (_: any, {selectProps: {width}}: any) => ({
+            ..._,
+            width: width
+        }),
+        dropdownIndicator: () => ({
+            display: 'none'
+        }),
+        indicatorsContainer: () => ({
+            display: 'none'
+        })
     };
 
     return (Object.keys(props.items).length > 0)
@@ -47,22 +60,30 @@ export const Table: React.FunctionComponent<TableProps> = (props) => {
                 lg: 12,
                 xl: 12
             }}
-            tooltip={<label
-                className={"entries-selection"}
-            >
-                Show&nbsp;
-                <select
-                    name="dataTable_length"
-                    aria-controls="dataTable"
-                    className="custom-select custom-select-sm form-control form-control-sm"
+            tooltip={
+                <label
+                    className={"entries-selection"}
                 >
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                    <option value="50">50</option>
-                </select>
-                &nbsp;entries
-            </label>}
+                    Show&nbsp;
+                    <Select
+                        defaultValue={{label: "20", value: 20}}
+                        onChange={(option: any) => dispatch(requestExpenses({
+                            prevLimit: props.selection.entries,
+                            offset: props.selection.current - 1,
+                            limit: option.value
+                        }))}
+                        isSearchable={false}
+                        styles={customStyles}
+                        width={'60px'}
+                        options={[
+                            {value: 10, label: '10'},
+                            {value: 20, label: '20'},
+                            {value: 30, label: '30'},
+                            {value: 40, label: '40'},
+                        ]}
+                    />
+                    &nbsp;entries
+                </label>}
             body={<div className="dt-bootstrap4">
                 <table
                     className="table"
@@ -87,7 +108,7 @@ export const Table: React.FunctionComponent<TableProps> = (props) => {
                         <div className="paging_simple_numbers">
                             <ul className="pagination">
                                 <li
-                                    onClick=    {() => setPagination((parseInt(props.selection.current) - 1), (props.selection.current > 1))}
+                                    onClick={() => setPagination((parseInt(props.selection.current) - 1), (props.selection.current > 1))}
                                     className={"paginate_button page-item previous " + ((props.selection.current > 1) ? '' : 'disabled')}
                                 >
                                     <div

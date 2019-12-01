@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {useHistory, useLocation} from "react-router-dom";
 
 export const SideBar: React.FunctionComponent = (props) => {
     const [toggleClass, setToggleClass] = useState("");
     const history = useHistory();
     const location = useLocation();
-    
+
     const toggleSideBar = () => setToggleClass((toggleClass === "" ? "toggled" : ""));
     return (
         <ul className={"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " + toggleClass}
@@ -75,11 +75,16 @@ export const SideBar: React.FunctionComponent = (props) => {
 
             {/*// <!-- Nav Item - Pages Collapse Menu -->*/}
             <li className="nav-item">
-                <a className="nav-link collapsed" href="#" data-toggle="collapse"
-                   data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <div
+                    className="nav-link collapsed"
+                    data-toggle="collapse"
+                    data-target="#collapsePages"
+                    aria-expanded="true"
+                    aria-controls="collapsePages"
+                >
                     <i className="fas fa-fw fa-folder"></i>
                     <span>Settings</span>
-                </a>
+                </div>
             </li>
 
             {/*// <!-- Divider -->*/}

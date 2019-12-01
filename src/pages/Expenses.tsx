@@ -14,8 +14,8 @@ export const Expenses: React.FunctionComponent = (props) => {
     const expenses = useSelector((state: any) => (state.expenses));
 
     useEffect(() => {
-        dispatch(requestExpenses({limit: 20, offset: 0}))
-    }, []);
+        dispatch(requestExpenses({prevLimit: 20, limit: 20, offset: 0}))
+    }, [dispatch]);
 
     const ProgressBarWidget = <div className="row no-gutters align-items-center">
         <div className="col-auto">

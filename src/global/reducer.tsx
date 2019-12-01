@@ -131,7 +131,6 @@ interface ReducerAction {
 }
 
 export const reducer = (state = INITIAL_STATE, action: ReducerAction) => {
-    console.log(action);
     switch (action.type) {
         case REHYDRATE:
             return Object.assign({}, state, {auth: (!!action.payload ? {...state.auth, ...action.payload.auth} : state.auth)});
@@ -154,7 +153,8 @@ export const reducer = (state = INITIAL_STATE, action: ReducerAction) => {
                         items: INITIAL_STATE.expenses.items,
                         selection: {
                             ...state.expenses.selection,
-                            current: ((action.payload.offset / state.expenses.selection.entries) + 1)
+                            entries: action.payload.limit,
+                            current: Math.floor((action.payload.prevLimit * action.payload.offset) / action.payload.limit) + 1,
                         }
                     }
                 }
@@ -169,7 +169,8 @@ export const reducer = (state = INITIAL_STATE, action: ReducerAction) => {
                         selection: {
                             ...state.expenses.selection,
                             total: action.payload.expenses.expenses.total,
-                            pages: Math.max(1, Math.ceil(action.payload.expenses.expenses.total / state.expenses.selection.entries))},
+                            pages: Math.max(1, Math.ceil(action.payload.expenses.expenses.total / state.expenses.selection.entries))
+                        },
                         items: action.payload.expenses.expenses.items
                     }
                 }

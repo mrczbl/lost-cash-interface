@@ -32,7 +32,7 @@ const App: React.FunctionComponent = () => {
                 }
             }).catch((err) => {});
         }
-    }, [user, auth]);
+    }, [user, auth, dispatch]);
 
     return (
         <PersistGate persistor={persistor}>
