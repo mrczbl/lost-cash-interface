@@ -13,12 +13,12 @@ export const SideBar: React.FunctionComponent = (props) => {
             style={{transition: "0.3s all ease-in-out"}}
         >
             {/*// <!-- Sidebar - Brand --> */}
-            <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div className="sidebar-brand d-flex align-items-center justify-content-center" onClick={() => history.push('/')}>
                 <div className="sidebar-brand-icon rotate-n-15">
                     <i className="fas fa-laugh-wink"></i>
                 </div>
                 <div className="sidebar-brand-text mx-3">Lost Cash</div>
-            </a>
+            </div>
 
             {/*// <!-- Divider -->*/}
             <hr className="sidebar-divider my-0"/>

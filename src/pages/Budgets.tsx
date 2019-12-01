@@ -5,7 +5,6 @@ import {TextIconWidget} from "../components/Base/TextIconWidget";
 import {TextChildWidget} from "../components/Base/TextChildWidget";
 import {useDispatch} from "react-redux";
 import {requestBudgets} from "../global/actions";
-import {Toast} from "../components/Wrapper/Toast";
 import "react-toastify/dist/ReactToastify.css";
 
 export const Budgets: React.FunctionComponent = (props) => {
@@ -106,7 +105,6 @@ export const Budgets: React.FunctionComponent = (props) => {
                     </footer>
                 </div>
             </div>
-            <Toast />
         </div>
     );
 };

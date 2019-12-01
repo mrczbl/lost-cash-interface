@@ -4,7 +4,6 @@ import {toast} from "react-toastify";
 import {loginUser} from "../helper/ApiRequest";
 import {useDispatch, useSelector} from 'react-redux'
 import {setUserLogin} from "../global/actions";
-import {Toast} from "../components/Wrapper/Toast";
 import '../styles/main.css';
 
 export const Login = () => {
@@ -117,7 +116,6 @@ export const Login = () => {
                     </div>
                 </div>
             </div>
-            <Toast/>
         </div>
     );
 };

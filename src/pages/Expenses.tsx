@@ -5,7 +5,6 @@ import {TextIconWidget} from "../components/Base/TextIconWidget";
 import {TextChildWidget} from "../components/Base/TextChildWidget";
 import {useDispatch, useSelector} from "react-redux";
 import {requestExpenses} from "../global/actions";
-import {Toast} from "../components/Wrapper/Toast";
 import "react-toastify/dist/ReactToastify.css";
 import {Table} from "../components/Base/Table";
 
@@ -114,7 +113,6 @@ export const Expenses: React.FunctionComponent = (props) => {
                     </footer>
                 </div>
             </div>
-            <Toast/>
         </div>
     );
 };
